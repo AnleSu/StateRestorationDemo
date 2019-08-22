@@ -22,6 +22,12 @@
     self.view.backgroundColor = [UIColor redColor];
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void) encodeRestorableStateWithCoder:(NSCoder *)coder {
     NSLog(@"ViewControllerA ---- encodeRestorableStateWithCoder");
     [super encodeRestorableStateWithCoder:coder];
@@ -32,7 +38,7 @@
 }
 
 - (void) applicationFinishedRestoringState {
-    
+    NSLog(@"ViewControllerA ---- applicationFinishedRestoringState");
 }
 
 + (nullable UIViewController *) viewControllerWithRestorationIdentifierPath:(NSArray<NSString *> *)identifierComponents coder:(NSCoder *)coder {
@@ -42,9 +48,8 @@
     vc.restorationIdentifier = identifierComponents.lastObject;
     vc.restorationClass = [self class];
     return vc;
-    
-    
 }
+
 
 /*
 #pragma mark - Navigation
